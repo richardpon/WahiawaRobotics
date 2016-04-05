@@ -10,18 +10,29 @@ time_count = 0
 is_running = False
 
 # Define Helper Function 
-# format(t) converts "t" into formatted string A:BC.D
+''' format(t) converts "t" into formatted string A:BC.D
+
+This is the most complex function in this solution. The approach is to calculate
+the largest units first (minutes), and then work down to smaller units one by one
+'''
 def format(t):
+
+	# Get the number of minutes
 	minutes = t / 600
 
+	# Total number of tenths of seconds left. The amount of time here is less than one minute
 	remainder = t - (minutes * 600)
 
+	# Calculate number of tens of seconds. If ten_seconds = 4, it represents 40 seconds 
 	ten_seconds = remainder / 100
 
+	# Number of tenths of seconds. The amount of time here is less than 10 seconds
 	remainder = remainder % 100
 
+	# Number of seconds. 
 	seconds = remainder / 10
 
+	# Number of tenths of seconds.
 	tenths = remainder % 10
 
 	return str(minutes) + ":" + str(ten_seconds) + str(seconds) + "." + str(tenths)
